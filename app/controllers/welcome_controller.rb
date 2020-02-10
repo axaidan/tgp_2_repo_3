@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 
   def show_welcome
-    puts "on est la"
+    puts params[:first_name]
   end
 end

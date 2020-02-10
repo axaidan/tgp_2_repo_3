@@ -1,2 +1,7 @@
-<h1>zigoutoutout</h1>
-<p>Find me in app/views/message/show.html.erb</p>
+<h1>TOUS LES GOSSIPS</h1>
+
+<% @gossip_arr.each do |gossip| %>
+	<h3> <%= gossip.title %> </h3>
+	<p> by : <%= gossip.user.first_name %> <p>
+	<p> content : <%= gossip.content %> <p>
+<% end %>
