@@ -1,0 +1,5 @@
+<h1>Gossip <%= @gossip.id %></h1>
+
+<h3> <%= @gossip.title %> </h3>
+<p> <%= @gossip.content %> </p>
+<p> by : <%= link_to "#{@gossip.user.first_name}" %> </p>
