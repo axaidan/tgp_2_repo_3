@@ -2,4 +2,4 @@
 
 <h3> <%= @gossip.title %> </h3>
 <p> <%= @gossip.content %> </p>
-<p> by : <%= link_to "#{@gossip.user.first_name}" %> </p>
+<p> by : <%= link_to "#{@gossip.user.first_name}", user_show_path(@gossip.user_id) %> </p>
