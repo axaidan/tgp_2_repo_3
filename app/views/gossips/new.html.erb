@@ -1,0 +1,31 @@
+
+<div class="container">
+	<h1 class="text-center m-2">Creer un Gossip</h1>
+
+	<form action="<%= gossips_path %>" method="POST">
+
+		<!-- AUTHENTIFICATION TOKEN -->
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+		<!-- FORM -->
+		<div class="form-group">
+			<label for="User">Utilisateur</label>
+			<input class="form-control" type="text" name="user">
+		</div>	
+
+		<div class="form-group">
+			<label for="title">Titre</label>
+			<input class="form-control" type="text" name="title">
+		</div>	
+
+		<div class="form-group">
+			<label for="content">Gossip</label>
+			<textarea class="form-control" name="content" placeholder="Raconte ta life"></textarea>
+		</div>	
+
+		<!-- BUTTON -->
+		<div class="form-group">
+			<input class="btn btn-success form-control" type="submit" value="Creer">
+		</div>	
+	</form>
+</div>

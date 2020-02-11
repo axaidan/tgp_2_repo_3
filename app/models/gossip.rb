@@ -4,5 +4,5 @@ class Gossip < ApplicationRecord
 	belongs_to :user
 
 	#LINK CITY
-	belongs_to :city
+	belongs_to :city, optional: true
 end

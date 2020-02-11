@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-
 	# HOMEPAGE
-	root 'home#show'	
+	root 'gossips#index'	
 
 	# ROUTE TEAM & CONTACT
 	get '/team', to: 'team#presentation'
@@ -10,11 +9,6 @@ Rails.application.routes.draw do
 	# ROUTE DYNAMIC PATH
 	get '/welcome/:first_name', to: 'welcome#show_welcome'    
 
-	# ROUTE SHOW ONE GOSSIP
-	get 'gossip/:gossip_id', to: 'gossip#show', as: 'gossip_show'
-
-	# ROUTE SHOW ONE USER
-	get 'user/:user_id', to: 'user#show', as: 'user_show'
-	
-	# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+	resources :gossips
+	resources :users
 end
