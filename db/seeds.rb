@@ -19,7 +19,7 @@ end
 #SEED USER
 10.times do 
 	prenom = Faker::Name.first_name
-	User.create(first_name: prenom, last_name: Faker::Name.last_name, email: Faker::Internet.email(name: prenom), age: rand(14..70), city: City.all[rand(0..4)])
+	User.create(first_name: prenom, last_name: Faker::Name.last_name, email: Faker::Internet.email(name: prenom), age: rand(14..70), city: City.all[rand(0..4)], password: Faker::String.random(length: 6..9))
 end
 
 #SEED GOSSIP
