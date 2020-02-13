@@ -1,2 +1,39 @@
-<h1>Gossips#edit</h1>
-<p>Find me in app/views/gossips/edit.html.erb</p>
+<div class="container">
+
+	<h1>Editer un Gossip</h1>
+
+	<%= form_for @gossip do |f| %>
+		<% @user = @gossip.user %>
+		<% @city = @gossip.city %>
+		
+		<!--
+		<div class="form-group">
+			<label>Utilisateur :</label>
+			<%= f.text_field :user, class: "form-control", placeholder: 'User', value: @user.first_name %> 
+		</div>	
+		-->
+
+		<div class="form-group">
+			<label>Titre :</label>
+			<%= f.text_field :title, class: "form-control" %>
+		</div>
+
+		<div class="form-group">
+			<label>Contenu :</label>
+			<%= f.text_area :content, class: "form-control" %>
+		</div>	
+
+		<!--
+		<div class="form-group">
+			<label>Ville :</label>
+			<%= f.text_field :city, class: "form-control", placeholder: 'City', value: @city.name %>
+			</div>
+		-->
+		<div class="form-group">
+			<button type="submit" class="btn btn-warning btn-lg btn-block">
+				Enregistrer les modifications
+			</button>
+		</div>	
+
+	<% end %>
+</div>

@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 	# ROUTE DYNAMIC PATH
 	get '/welcome/:first_name', to: 'welcome#show_welcome'    
 
-	resources :gossips
+	resources :gossips do
+		resources :comments, except: [:show, :index]
+	end
+
 	resources :users
+	resources :cities, except: [:update, :edit, :destroy, :create, :new]
 end

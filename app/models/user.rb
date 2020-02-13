@@ -15,4 +15,7 @@ class User < ApplicationRecord
 
 	#LINK CITY
 	belongs_to :city
+
+	#LINK COMMENT
+	has_many :comments
 end

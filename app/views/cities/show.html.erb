@@ -1,0 +1,31 @@
+<div class="container">
+
+
+	<h1 class="text-center"><%= @city.name %></h1>
+	<h2 class="text-center">Zip Code : <%= @city.zip_code%></h2>
+	<h4 class="p-2"><%= "Tous les gossips de cette Ville" %></h3>
+
+	<div class="list-group">
+
+		<% @city.gossips.each do |each_gossip| %>
+			<div class="list-group-item">
+				<div class="list-group">
+					<%= link_to "Titre : #{each_gossip.title}",
+						gossip_path(each_gossip.id),
+						class: "bg-light list-group-item list-group-item-action" %>
+
+					<div class="list-group-item list-group-item-action">
+						<%= "Gossip : #{each_gossip.content}" %>
+					</div>
+
+					<%= link_to "Auteur : #{each_gossip.user.first_name} #{each_gossip.user.last_name}",
+						user_path(each_gossip.user.id),
+						class: "list-group-item list-group-item-action" %>
+				</div>
+			</div>
+		<% end %>
+
+	</div>
+
+</div>
+

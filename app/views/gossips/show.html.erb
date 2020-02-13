@@ -1,6 +1,43 @@
-<h1>Gossip <%= @gossip.id %></h1>
-
-<h3> <%= @gossip.title %> </h3>
-<p> <%= @gossip.content %> </p>
-<p> by : <%= link_to "#{@gossip.user.first_name}", user_path(@gossip.user_id) %> </p>
-
+<div class="container p-2">
+	<h3 class="p-2">Gossip <%= @gossip.id %> :</h3>
+	<div class="card">
+		<div class="card-header">
+			<h5 class="card-title"><%= "Titre : #{@gossip.title}" %></h5>
+		</div>
+		<div class="card-body p-0">
+			<div class="list-group list-group-flush">
+				<div class="list-group-item list-group-item-action">
+					<%= "Gossip : #{@gossip.content}" %>
+				</div>
+				<%= link_to "Auteur : #{@gossip.user.first_name} #{@gossip.user.last_name}",
+					user_path(@gossip.user.id),
+					class: "list-group-item list-group-item-action" %>
+				<%= link_to "Ville : #{@gossip.city.name}",
+					city_path(@gossip.city.id),
+					class: "list-group-item list-group-item-action" %>
+		</div>
+		</div>
+	</div>
+	<div class="d-flex my-4 justify-content-around">
+		<%= link_to "Commenter", new_gossip_comment_path(@gossip.id), class: "btn btn-primary btn-lg" %>
+		<%= link_to "Editer", edit_gossip_path(@gossip.id), class: "btn btn-warning btn-lg" %>
+		<a href="<%= gossip_path(@gossip.id) %>" 
+		 class="btn btn-danger btn-lg" 
+	 data-confirm="Etes-vous sur de vouloir supprimer ce Gossip ?" 
+	data-method="DELETE">
+	Supprimer
+		</a>
+	</div>
+	<h3 class="p-2">Commentaires</h3>
+	<div class="list-group">
+		<% @gossip.comments.each do |each_comment| %>
+			<li class="list-group-item list-group-item-action">
+				<div class="d-flex justify-content-between">
+					<%= link_to "#{each_comment.user.first_name}", user_path(each_comment.user.id), class: "col-1 stretched-link"%>
+					<div class="text-center col-9"><%= each_comment.content %></div>	
+					<%= link_to "Editer", edit_gossip_comment_path(@gossip.id, each_comment.id), class: "btn btn-warning btn-sm col-1" %>
+				</div>
+			</li>
+		<% end %>
+	</div>
+</div>

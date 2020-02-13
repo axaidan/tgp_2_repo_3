@@ -1,0 +1,19 @@
+<div class="container">
+	<h1 class="text-center">Editer un Commentaire</h1>
+
+	<%= form_for @comment, url: {action: "update"} do |f| %>
+
+		<div class="form-group">
+			<label>Contenu :</label>
+			<%= f.text_area :content, class: "form-control" %>
+		</div>
+
+		<div class="form-group">
+			<button type="submit" class="btn btn-warning btn-lg btn-block">
+				Enregistrer les modifications
+			</button>
+		</div>
+
+	<% end %>
+
+</div>

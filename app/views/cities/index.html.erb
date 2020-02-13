@@ -1,0 +1,10 @@
+<div class="container">
+	<h1>Toutes les Villes</h1>
+
+	<div class="list-group">
+		<% @cities_arr.each do |each_city| %>
+			<%= link_to "#{each_city.zip_code} - #{each_city.name}", city_path(each_city.id), class: "list-group-item list-group-item-action" %>
+		<% end %>
+	</div>
+</div>
+

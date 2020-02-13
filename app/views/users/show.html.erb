@@ -1,5 +1,64 @@
-<h1>User <%= @user.id %></h1>
+<div class="container p-2">
+	<h3 class="p-2">Profil :</h3>
+	<div class="card">
+		<div class="card-header">
+			<h5 class="card-title"><%= "Nom : #{@user.first_name} #{@user.last_name}" %></h5>
+		</div>
+		<div class="card-body p-0">
+			<div class="list-group list-group-flush">
+				<div class="list-group-item list-group-item-action">
+					<%= "Age : #{@user.age} ans" %>
+				</div>
+				<div class="list-group-item list-group-item-action">
+					<%= "email : #{@user.email}" %>
+				</div>
+				<%= link_to "Ville : #{@user.city.name}",
+					city_path(@user.city.id),
+					class: "list-group-item list-group-item-action" %>
+				<div class="list-group-item list-group-item-action">
+					<%= "Description : #{@user.desc}" %>
+				</div>
+			</div>
+		</div>
+	</div>
 
-<h3><%= @user.first_name %> <%= @user.last_name%> </h3>
-<p> City : <%= @user.city.name %> </p>
-<p> Description : <%= @user.desc %> </p>
+	<h3 class="p-2">Gossips de <%= @user.first_name %></h3>
+
+	<div class="list-group">
+		<% @user.gossips.each do |each_gossip| %>
+			      <div class="list-group-item">
+        <div class="list-group">
+          <%= link_to "Titre : #{each_gossip.title}",
+            gossip_path(each_gossip.id),
+            class: "bg-light list-group-item list-group-item-action" %>
+
+          <div class="list-group-item list-group-item-action">
+            <%= "Gossip : #{each_gossip.content}" %>
+          </div>
+
+          <%= link_to "Auteur : #{each_gossip.user.first_name} #{each_gossip.user.last_name}",
+            user_path(each_gossip.user.id),
+            class: "list-group-item list-group-item-action" %>
+        </div>
+      </div>
+		<% end %>
+	</div>
+
+	<h3 class="p-2">Commentaires de <%= @user.first_name %></h3>
+	  <div class="list-group">
+    <% @user.comments.each do |each_comment| %>
+            <div class="list-group-item">
+        <div class="list-group d-flex justify-content-between">
+          <div class="list-group-item list-group-item-action">
+            <%= "Commentaire : #{each_comment.content}" %>
+          </div>
+
+          <%= link_to "Voir le Gossip",
+            gossip_path(each_comment.gossip.id),
+            class: "list-group-item list-group-item-action" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
