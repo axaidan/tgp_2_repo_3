@@ -19,31 +19,61 @@
 
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-item active">
-						<a class="nav-link" href="/"> Accueil <span class="sr-only">(current)</span></a>
-					</li>
+
+					<% if current_user == nil %>
+
+						<li class="nav-item active">
+							<a class="nav-link" href="<%= new_user_path %>">
+								Inscription<span class="sr-only">(current)</span>
+							</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="<%= new_session_path %>">
+								Connexion<span class="sr-only">(current)</span>
+							</a>
+						</li>
+
+					<% else %>
+
+						<li class="nav-item active">
+							<a class="nav-link" href="<%= session_path(session.id) %>" data-method="delete">
+								Deconnexion<span class="sr-only">(current)</span>
+							</a>					
+						</li>
+
+					<% end %>
+
 					<li class="nav-item">
 						<a class="nav-link" href="/team">L'équipe</a>
 					</li>
+
 					<li class="nav-item">
 						<a class="nav-link" href="/contact">Contact</a>
 					</li>
+
 				</ul>
 
 			</div>
 		</nav>
 
-		<div class="container-fluid m-2 p-4">
+		<div class="container-fluid m-3 p-2">
+			<div class="list-group px-3">
+				<p class="list-group-item text-center p-1"><%= "Session en cours : #{session[:user_id]}" %></p>
+				<p class="list-group-item text-center p-1"><%= "current_user : #{current_user}" %></p>
+			</div>
+		</div>
 
-		<%= yield %>
+		<div class="container-fluid mt-3 p-2">
 
-		<!--
-		<footer class="page-footer border-top mt-3">
-			<nav class="navbar navbar-light bg-light">
-				<a class="navbar-brand" href="https://github.com/axaidan/TGP_2.git">GitHub Axel Aidan</a>
-			</nav>
-		</footer>
-		-->
+			<%= yield %>
+
+			<!--
+		 <footer class="page-footer border-top mt-3">
+		 <nav class="navbar navbar-light bg-light">
+		 <a class="navbar-brand" href="https://github.com/axaidan/TGP_2.git">GitHub Axel Aidan</a>
+		 </nav>
+		 </footer>
+			-->
 		</div>
 	</body>
 </html>

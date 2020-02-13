@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+	before_action :authenticated, only: [:new, :edit]
+
 	def new
 		current_gossip = Gossip.find(params[:gossip_id])
 		@comment = Comment.new(gossip: current_gossip)
@@ -7,7 +9,7 @@ class CommentsController < ApplicationController
 	def create
 		comment_params = params[:comment]
 		@comment = Comment.new
-		@comment.user = User.find_by(first_name: comment_params[:user])
+		@comment.user = current_user 
 		@comment.content = comment_params[:content]
 		@comment.gossip = Gossip.find(params[:gossip_id])
 		@comment.save
@@ -32,4 +34,11 @@ class CommentsController < ApplicationController
 		redirect_to(gossip_path(params[:gossip_id]))
 	end
 
+	private
+
+	def authenticated
+		unless current_user
+			redirect_to new_session_path
+		end
+	end
 end

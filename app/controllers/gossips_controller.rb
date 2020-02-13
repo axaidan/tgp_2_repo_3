@@ -1,6 +1,13 @@
 class GossipsController < ApplicationController
+	before_action :authenticated, except: [:index, :show]
 	
 	def index
+		# DANS SERVEUR AFFICHAGE SESSIONS A CHAQUE RETOUR INDEX
+		puts "=" * 25 + 'INDEX' + "=" * 25
+		puts "SESSION == NIL ? #{session[:user_id].nil?}"
+		puts "CURRENT USER : #{current_user}"
+		puts "=" * 25 + 'INDEX' + "=" * 25
+
 		@gossip_arr = Gossip.all
 	end
 
@@ -8,7 +15,7 @@ class GossipsController < ApplicationController
 		@gossip = Gossip.new
 		@gossip.title = params[:title]
 		@gossip.content = params[:content]
-		@gossip.user = User.find_by(first_name: params[:user])
+		@gossip.user = current_user 
 		@gossip.save		
 		redirect_to root_path
 	end
@@ -35,5 +42,13 @@ class GossipsController < ApplicationController
 		@gossip = Gossip.find(params[:id])
 		@gossip.destroy
 		redirect_to gossips_path
+	end
+
+	private
+
+	def authenticated
+		unless current_user
+			redirect_to new_session_path
+		end
 	end
 end

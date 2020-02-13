@@ -4,11 +4,6 @@
 	<%= form_for @comment, url: {action: "create"} do |f| %>
 
 		<div class="form-group">
-			<label>Utilisateur :</label>
-			<%= f.text_field :user, class: "form-control" %>
-		</div>
-
-		<div class="form-group">
 			<label>Commentaire :</label>
 			<%= f.text_area :content, class: "form-control" %>
 		</div>
