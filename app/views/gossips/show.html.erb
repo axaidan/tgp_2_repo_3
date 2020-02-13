@@ -20,13 +20,15 @@
 	</div>
 	<div class="d-flex my-4 justify-content-around">
 		<%= link_to "Commenter", new_gossip_comment_path(@gossip.id), class: "btn btn-primary btn-lg" %>
-		<%= link_to "Editer", edit_gossip_path(@gossip.id), class: "btn btn-warning btn-lg" %>
-		<a href="<%= gossip_path(@gossip.id) %>" 
-		 class="btn btn-danger btn-lg" 
+		<% if @gossip.user == current_user %>
+			<%= link_to "Editer", edit_gossip_path(@gossip.id), class: "btn btn-warning btn-lg" %>
+			<a href="<%= gossip_path(@gossip.id) %>" 
+			class="btn btn-danger btn-lg" 
 	 data-confirm="Etes-vous sur de vouloir supprimer ce Gossip ?" 
 	data-method="DELETE">
 	Supprimer
-		</a>
+			</a>
+		<% end %>
 	</div>
 	<h3 class="p-2">Commentaires</h3>
 	<div class="list-group">
@@ -35,7 +37,9 @@
 				<div class="d-flex justify-content-between">
 					<%= link_to "#{each_comment.user.first_name}", user_path(each_comment.user.id), class: "col-1 stretched-link"%>
 					<div class="text-center col-9"><%= each_comment.content %></div>	
-					<%= link_to "Editer", edit_gossip_comment_path(@gossip.id, each_comment.id), class: "btn btn-warning btn-sm col-1" %>
+					<% if @gossip.user == current_user %>
+						<%= link_to "Editer", edit_gossip_comment_path(@gossip.id, each_comment.id), class: "btn btn-warning btn-sm col-1" %>
+					<% end %>
 				</div>
 			</li>
 		<% end %>

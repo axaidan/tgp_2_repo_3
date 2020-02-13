@@ -52,14 +52,15 @@
 					</li>
 
 				</ul>
-
 			</div>
 		</nav>
 
 		<div class="container-fluid m-3 p-2">
 			<div class="list-group px-3">
-				<p class="list-group-item text-center p-1"><%= "Session en cours : #{session[:user_id]}" %></p>
-				<p class="list-group-item text-center p-1"><%= "current_user : #{current_user}" %></p>
+				<p class="list-group-item text-center p-0">===== A LA CREATION DES GOSSIPS ET DES USERS =====<br>===== LA VILLE EST ATTRIBUEE AUTOMATIQUEMENT =====<br>===== IL S'AGIT DE City.all.first =====</p>
+				<p class="list-group-item text-center p-0"><b>RESUME DE SESSION</b></p>
+				<p class="list-group-item text-center p-0"><%= "Session en cours : #{session[:user_id]}" %></p>
+				<p class="list-group-item text-center p-0"><%= "current_user : #{current_user}" %></p>
 			</div>
 		</div>
 

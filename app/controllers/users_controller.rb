@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 		@user.desc = user_params[:desc]
 		@user.city = City.all.first
 		if @user.save
+			login(@user)
 			redirect_to gossips_path	
 		else
 			render :new

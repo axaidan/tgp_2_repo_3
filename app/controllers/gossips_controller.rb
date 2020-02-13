@@ -7,7 +7,6 @@ class GossipsController < ApplicationController
 		puts "SESSION == NIL ? #{session[:user_id].nil?}"
 		puts "CURRENT USER : #{current_user}"
 		puts "=" * 25 + 'INDEX' + "=" * 25
-
 		@gossip_arr = Gossip.all
 	end
 
@@ -16,6 +15,7 @@ class GossipsController < ApplicationController
 		@gossip.title = params[:title]
 		@gossip.content = params[:content]
 		@gossip.user = current_user 
+		@gossip.city = City.all.first
 		@gossip.save		
 		redirect_to root_path
 	end
