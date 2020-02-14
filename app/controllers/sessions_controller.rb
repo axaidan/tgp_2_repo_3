@@ -6,11 +6,12 @@ class SessionsController < ApplicationController
 		puts "=" * 25 + "CREATE" + "=" * 25
 		puts params
 		puts "=" * 25 + "CREATE" + "=" * 25
-		
+
 		user = User.find_by(email: params[:email])
-		
+
 		if user && user.authenticate(params[:password])
 			session[:user_id] = user.id
+			redirect_to gossips_path
 		else
 			flash.now[:danger] = 'ERROR - email ou mot de passe invalide.'
 			render 'new'
@@ -19,7 +20,6 @@ class SessionsController < ApplicationController
 		puts "=" * 25 + "CREATE" + "=" * 25
 		puts session[:user_id]
 		puts "=" * 25 + "CREATE" + "=" * 25
-		redirect_to gossips_path
 	end
 
 	def destroy

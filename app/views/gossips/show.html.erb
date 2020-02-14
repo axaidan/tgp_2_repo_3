@@ -37,7 +37,7 @@
 				<div class="d-flex justify-content-between">
 					<%= link_to "#{each_comment.user.first_name}", user_path(each_comment.user.id), class: "col-1 stretched-link"%>
 					<div class="text-center col-9"><%= each_comment.content %></div>	
-					<% if @gossip.user == current_user %>
+					<% if each_comment.user.id == current_user.id %>
 						<%= link_to "Editer", edit_gossip_comment_path(@gossip.id, each_comment.id), class: "btn btn-warning btn-sm col-1" %>
 					<% end %>
 				</div>
